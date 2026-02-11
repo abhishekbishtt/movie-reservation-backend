@@ -1,0 +1,124 @@
+.admin-dashboard {
+    padding: var(--space-lg) 0;
+}
+
+.dashboard-header {
+    margin-bottom: var(--space-2xl);
+}
+
+.dashboard-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.dashboard-header p {
+    color: var(--text-muted);
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    padding: var(--space-xl) !important;
+}
+
+.stat-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-lg);
+}
+
+.stat-icon-primary {
+    background: rgba(59, 130, 246, 0.1);
+    color: var(--primary-400);
+}
+
+.stat-icon-success {
+    background: rgba(34, 197, 94, 0.1);
+    color: var(--success);
+}
+
+.stat-icon-gold {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--accent-gold);
+}
+
+.stat-icon-purple {
+    background: rgba(139, 92, 246, 0.1);
+    color: var(--accent-purple);
+}
+
+.stat-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.stat-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.stat-value {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+/* Dashboard Section */
+.dashboard-section {
+    margin-bottom: var(--space-2xl);
+}
+
+.dashboard-section h2 {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-lg);
+}
+
+/* Quick Actions */
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: var(--space-md);
+}
+
+.quick-action-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-xl) !important;
+    text-align: center;
+    cursor: pointer;
+    color: var(--text-secondary);
+}
+
+.quick-action-card:hover {
+    color: var(--text-primary);
+}
+
+.quick-action-card svg {
+    color: var(--primary-400);
+}
+
+/* Activity Card */
+.activity-card {
+    padding: var(--space-xl) !important;
+}
+
+.activity-placeholder {
+    text-align: center;
+    color: var(--text-muted);
+    padding: var(--space-xl);
+}

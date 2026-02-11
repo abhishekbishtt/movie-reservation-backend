@@ -1,0 +1,73 @@
+/* Admin Page Shared Styles */
+.admin-page {
+    padding: var(--space-lg) 0;
+}
+
+.admin-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl);
+}
+
+.admin-page-header h1 {
+    font-size: 1.75rem;
+    margin-bottom: var(--space-xs);
+}
+
+.admin-page-header p {
+    color: var(--text-muted);
+}
+
+.admin-content-card {
+    padding: var(--space-2xl) !important;
+}
+
+.admin-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-2xl);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.admin-placeholder svg {
+    opacity: 0.5;
+}
+
+.admin-placeholder h3 {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+}
+
+/* Admin Table Styles */
+.admin-table-container {
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: var(--space-md);
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-table th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    background: var(--bg-tertiary);
+}
+
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}

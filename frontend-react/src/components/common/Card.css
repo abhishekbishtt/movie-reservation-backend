@@ -1,0 +1,70 @@
+.card {
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-base);
+}
+
+/* Variants */
+.card-default {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-elevated {
+    background: var(--bg-elevated);
+    box-shadow: var(--shadow-lg);
+}
+
+.card-glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card-bordered {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Padding */
+.card-padding-none {
+    padding: 0;
+}
+
+.card-padding-sm {
+    padding: var(--space-sm);
+}
+
+.card-padding-md {
+    padding: var(--space-md);
+}
+
+.card-padding-lg {
+    padding: var(--space-lg);
+}
+
+/* Hover Effect */
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.card-clickable {
+    cursor: pointer;
+}
+
+/* Subcomponents */
+.card-header {
+    padding: var(--space-md) var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-body {
+    padding: var(--space-lg);
+}
+
+.card-footer {
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}

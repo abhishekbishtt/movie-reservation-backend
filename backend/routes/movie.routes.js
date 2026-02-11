@@ -12,6 +12,9 @@ router.get('/search', movieController.searchMovies);
 // Get movies with filters (main grid)
 router.get('/', movieController.getMovies);
 
+// Get movies playing in a city
+router.get('/city/:cityId', movieController.getMoviesByCity);
+
 // Movie details with showtimes
 router.get('/:movieId', movieController.getMovieById);
 

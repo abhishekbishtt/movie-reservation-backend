@@ -1,0 +1,117 @@
+.profile-page {
+    padding: var(--space-2xl) 0;
+    min-height: calc(100vh - 73px);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+}
+
+.profile-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.profile-header p {
+    color: var(--text-muted);
+}
+
+/* Avatar Section */
+.profile-avatar-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-purple));
+    border-radius: var(--radius-full);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.profile-avatar-info {
+    text-align: center;
+}
+
+.profile-avatar-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-xs);
+}
+
+.profile-avatar-info p {
+    color: var(--text-muted);
+}
+
+/* Profile Card */
+.profile-card {
+    margin-bottom: var(--space-lg);
+    padding: var(--space-xl) !important;
+}
+
+.profile-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.profile-card form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md);
+}
+
+/* Account Info */
+.account-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.info-label {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.info-value {
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+@media (max-width: 640px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .info-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--space-xs);
+    }
+}

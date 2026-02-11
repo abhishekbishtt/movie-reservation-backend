@@ -205,8 +205,6 @@ exports.createMovie = async (req, res) => {
 
 exports.getMovieById = async (req, res) => {
   try {
-    const { movieId } = req.params;
-
     if (!movieId) {
       return res.status(400).json({
         message: 'Valid movie ID is required'
@@ -569,7 +567,7 @@ exports.getMovieShowtimes = async (req, res) => {
         {
           model: Movie,
           as: 'movie',
-          attributes: ['id', 'title', 'duration', 'certification']
+          attributes: ['id', 'title', 'duration', 'age_rating']
         },
         {
           model: Hall,
@@ -618,8 +616,8 @@ exports.getMoviesByCity = async (req, res) => {
         model: Showtime,
         as: 'showtimes',
         where: {
-          showDate: showDate,
-          isActive: true
+          show_date: showDate,
+          is_active: true
         },
         include: [{
           model: Hall,
@@ -628,7 +626,7 @@ exports.getMoviesByCity = async (req, res) => {
             model: Theater,
             as: 'theater',
             where: {
-              cityId: cityId,
+              city_id: cityId,
               is_active: true
             },
             include: [{

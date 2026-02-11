@@ -1,19 +1,19 @@
 // controllers/theater.controller.js - CREATE THIS FILE
 
-const { Theater, Hall, City } = require('../models');
+const { Theater, Hall, City, Showtime, Movie } = require('../models');
 
 // Create theater (Admin only)
 exports.createTheater = async (req, res) => {
   try {
     const { name, address, cityId, imax_available, four_dx_available } = req.body;
-    
+
     if (!name || !address || !cityId) {
       return res.status(400).json({
         message: 'Missing required fields',
         required: ['name', 'address', 'city']
       });
     }
-    
+
     const theater = await Theater.create({
       name,
       address,
@@ -22,7 +22,7 @@ exports.createTheater = async (req, res) => {
       four_dx_available: four_dx_available || false,
       is_active: true
     });
-    
+
     res.status(201).json({
       message: 'Theater created successfully',
       theater
@@ -61,10 +61,10 @@ exports.getAllTheaters = async (req, res) => {
 
 //get theater by city
 
-exports.getTheaterByCity=async(req,res)=>{
+exports.getTheaterByCity = async (req, res) => {
 
-  const city=req.city;
-  
+  const city = req.city;
+
 }
 
 
@@ -112,7 +112,7 @@ exports.updateTheater = async (req, res) => {
     }
 
     const theater = await Theater.findByPk(theaterId);
-    
+
     if (!theater) {
       return res.status(404).json({ message: 'Theater not found' });
     }
@@ -147,7 +147,7 @@ exports.deleteTheater = async (req, res) => {
     }
 
     const theater = await Theater.findByPk(theaterId);
-    
+
     if (!theater) {
       return res.status(404).json({ message: 'Theater not found' });
     }
@@ -176,9 +176,9 @@ exports.getTheatersByCity = async (req, res) => {
     }
 
     const theaters = await Theater.findAll({
-      where: { 
-        cityId: cityId,
-        is_active: true 
+      where: {
+        city_id: cityId,
+        is_active: true
       },
       include: [
         {
@@ -191,7 +191,7 @@ exports.getTheatersByCity = async (req, res) => {
           as: 'halls',
           where: { is_active: true },
           required: false,
-          attributes: ['id', 'name', 'formatType', 'totalSeats']
+          attributes: ['id', 'name', 'screen_type', 'total_seats']
         }
       ],
       order: [['name', 'ASC']]
@@ -215,7 +215,7 @@ exports.getMovieTheatersInCity = async (req, res) => {
     const { movieId, cityId } = req.params;
     const { date } = req.query;
 
-    if (!movieId || isNaN(movieId)) {
+    if (!movieId) {
       return res.status(400).json({ message: 'Valid movie ID is required' });
     }
 
@@ -226,9 +226,9 @@ exports.getMovieTheatersInCity = async (req, res) => {
     const showDate = date || new Date().toISOString().split('T')[0];
 
     const theaters = await Theater.findAll({
-      where: { 
-        cityId: cityId,
-        is_active: true 
+      where: {
+        city_id: cityId,
+        is_active: true
       },
       include: [
         {
@@ -243,19 +243,19 @@ exports.getMovieTheatersInCity = async (req, res) => {
             model: Showtime,
             as: 'showtimes',
             where: {
-              movieId: movieId,
-              showDate: showDate,
-              isActive: true
+              movie_id: movieId,
+              show_date: showDate,
+              is_active: true
             },
             include: [{
               model: Movie,
               as: 'movie',
-              attributes: ['id', 'title', 'duration', 'certification']
+              attributes: ['id', 'title', 'duration', 'age_rating']
             }],
-            attributes: ['id', 'showTime', 'basePrice', 'availableSeats'],
+            attributes: ['id', 'show_time', 'price', 'available_seats'],
             required: true
           }],
-          attributes: ['id', 'name', 'formatType'],
+          attributes: ['id', 'name', 'screen_type'],
           required: true
         }
       ],

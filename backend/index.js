@@ -44,6 +44,8 @@ const healthRoutes = require('./routes/health.routes');
 const searchRoutes = require('./routes/search.routes');
 const adminRoutes = require('./routes/admin.routes');
 const profileRoutes = require('./routes/profile.routes');
+const cityRoutes = require('./routes/city.routes');
+const theaterRoutes = require('./routes/theater.routes');
 
 
 // Use routes
@@ -56,6 +58,8 @@ app.use('/api/payment', paymentRoutes);
 app.use('/api/health', healthRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/profile', profileRoutes);
+app.use('/api/cities', cityRoutes);
+app.use('/api/theaters', theaterRoutes);
 
 
 // Health check

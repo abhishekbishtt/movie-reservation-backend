@@ -1,0 +1,94 @@
+.booking-summary {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    padding: var(--space-lg);
+}
+
+.booking-summary-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Movie Info */
+.booking-summary-movie {
+    display: flex;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.booking-summary-poster {
+    width: 60px;
+    height: 90px;
+    object-fit: cover;
+    border-radius: var(--radius-md);
+}
+
+.booking-summary-movie-info h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.booking-summary-movie-info p {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+/* Details */
+.booking-summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.booking-summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.booking-summary-item svg {
+    flex-shrink: 0;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Price Breakdown */
+.booking-summary-price {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.price-total {
+    margin-top: var(--space-sm);
+    padding-top: var(--space-md);
+    border-top: 1px dashed rgba(255, 255, 255, 0.1);
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.price-total span:last-child {
+    color: var(--success);
+}

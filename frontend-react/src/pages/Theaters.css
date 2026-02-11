@@ -1,0 +1,101 @@
+.theaters-page {
+    padding: var(--space-2xl) 0;
+    min-height: calc(100vh - 73px);
+}
+
+.theaters-header {
+    margin-bottom: var(--space-2xl);
+}
+
+.theaters-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.theaters-header p {
+    color: var(--text-muted);
+}
+
+.theaters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.theater-card {
+    padding: var(--space-xl) !important;
+}
+
+.theater-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.theater-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-500), var(--accent-purple));
+    border-radius: var(--radius-lg);
+    color: white;
+}
+
+.theater-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.theater-address {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+.theater-address svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.theater-info {
+    display: flex;
+    gap: var(--space-md);
+}
+
+.theater-halls {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.theater-amenities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+}
+
+.amenity-tag {
+    padding: 0.25rem 0.625rem;
+    background: rgba(59, 130, 246, 0.1);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--primary-400);
+}
+
+.theaters-coming-soon {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    color: var(--text-muted);
+}

@@ -10,6 +10,7 @@ const {
     User,
     BookedSeats,
     Payment,
+    Seat,
     sequelize
 } = require('../models');
 const { Op } = require('sequelize');
@@ -20,7 +21,7 @@ exports.createBooking = async (req, res, next) => {
     const transaction = await sequelize.transaction();
 
     try {
-        const userId = req.user.id;
+        const userId = req.user.id; // user id decoded from auth middleware
         const { showtimeId: showtimeIdStr, selectedSeats: selectedSeatsStr } = req.body;
         const showtimeId = parseInt(showtimeIdStr);
         const selectedSeats = selectedSeatsStr.map(s => parseInt(s));
@@ -32,7 +33,7 @@ exports.createBooking = async (req, res, next) => {
                 as: 'movie',
                 attributes: ['id', 'title', 'duration']
             }],
-            transaction
+            transaction // it ensures that the query runs within the transaction in other words it ensures if transaction fails then this query will also be rolled back
         });
 
         if (!showtime) {
@@ -75,11 +76,43 @@ exports.createBooking = async (req, res, next) => {
             });
         }
 
-        // Calculate amounts
-        const seatPrice = parseFloat(showtime.price);
+        // Fetch actual seat details to get seat_type for dynamic pricing
+        const seatDetails = await Seat.findAll({
+            where: { id: { [Op.in]: selectedSeats } },
+            attributes: ['id', 'seat_type'],
+            transaction
+        });
+
+        // Create a map for quick lookup: seatId -> seat_type
+        const seatTypeMap = {};
+        seatDetails.forEach(seat => {
+            seatTypeMap[seat.id] = seat.seat_type;
+        });
+
+        // Pricing config: base price from showtime + premium fee if applicable
+        const PREMIUM_FEE = 100; // ₹100 extra for premium seats
+        const basePrice = parseFloat(showtime.price);
+
+        // Calculate individual seat prices and total
+        let seatsTotal = 0;
+        const bookedSeatsData = selectedSeats.map(seatId => {
+            const seatType = seatTypeMap[seatId] || 'regular';
+            const seatPrice = seatType === 'premium'
+                ? basePrice + PREMIUM_FEE
+                : basePrice;
+            seatsTotal += seatPrice;
+
+            return {
+                seat_id: seatId,
+                showtime_id: showtimeId,
+                seat_price: seatPrice,
+                booking_status: 'reserved'
+            };
+        });
+
         const seatCount = selectedSeats.length;
-        const convenienceFee = 30 * seatCount;
-        const totalAmount = (seatPrice * seatCount) + convenienceFee;
+        const convenienceFee = 30 * seatCount; // ₹30 per seat
+        const totalAmount = seatsTotal + convenienceFee;
 
         // Create reservation
         const reservation = await Reservation.create({
@@ -92,15 +125,6 @@ exports.createBooking = async (req, res, next) => {
             status: 'pending',
             expires_at: new Date(Date.now() + 10 * 60 * 1000)
         }, { transaction });
-
-        // Create booked seats
-        const bookedSeatsData = selectedSeats.map(seatId => ({
-            // id is auto-increment, do not set it manually
-            seat_id: seatId,
-            showtime_id: showtimeId,
-            seat_price: seatPrice,
-            booking_status: 'reserved'
-        }));
 
         await BookedSeats.bulkCreate(bookedSeatsData, { transaction });
 

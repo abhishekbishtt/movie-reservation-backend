@@ -1,0 +1,165 @@
+.showtime-selector {
+    margin-bottom: var(--space-xl);
+}
+
+.showtime-selector-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-lg);
+}
+
+.showtime-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.showtime-group {
+    background: var(--bg-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+.showtime-theater-info {
+    margin-bottom: var(--space-md);
+}
+
+.showtime-theater-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.25rem;
+}
+
+.showtime-hall-name {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    margin-right: var(--space-sm);
+}
+
+.showtime-theater-address {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.5rem;
+}
+
+.showtime-times {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+}
+
+.showtime-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: var(--space-md) var(--space-lg);
+    background: var(--bg-tertiary);
+    border: 2px solid transparent;
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    min-width: 100px;
+}
+
+.showtime-pill:hover {
+    border-color: var(--primary-400);
+    background: rgba(59, 130, 246, 0.1);
+}
+
+.showtime-pill.selected {
+    border-color: var(--primary-500);
+    background: var(--primary-500);
+}
+
+.showtime-time {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.showtime-price {
+    font-size: 0.75rem;
+    color: var(--success);
+}
+
+.showtime-pill.selected .showtime-price {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.showtime-seats {
+    font-size: 0.625rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.showtime-pill.selected .showtime-seats {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.showtime-empty {
+    text-align: center;
+    padding: var(--space-2xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.showtime-empty p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-sm);
+}
+
+.showtime-empty-hint {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+}
+
+/* Loading skeleton */
+.showtime-loading {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+}
+
+.showtime-skeleton-theater {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+}
+
+.showtime-skeleton-times {
+    display: flex;
+    gap: var(--space-sm);
+    margin-top: var(--space-md);
+}
+
+.skeleton {
+    background: linear-gradient(90deg,
+            var(--bg-tertiary) 0%,
+            var(--bg-elevated) 50%,
+            var(--bg-tertiary) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}

@@ -417,13 +417,13 @@ exports.CreateShowtime = async (req, res) => {
 
     // Create showtime with correct field mapping
     const newShowtime = await Showtime.create({
-      movieId: parseInt(movieId),
-      hallId: parseInt(hallId),
-      showDate,
-      showTime,
-      basePrice: parseFloat(basePrice),
-      availableSeats: parseInt(availableSeats),
-      isActive: true
+      movie_id: parseInt(movieId),
+      hall_id: parseInt(hallId),
+      show_date: showDate,
+      show_time: showTime,
+      price: parseFloat(basePrice),
+      available_seats: parseInt(availableSeats),
+      is_active: true
     });
 
     return res.status(201).json({
@@ -457,7 +457,7 @@ exports.getMovieShowtimes = async (req, res) => {
   try {
     const { movieId } = req.params;
 
-    if (!movieId || isNaN(movieId)) {
+    if (!movieId) {
       return res.status(400).json({ message: 'Valid movie ID is required' });
     }
 
@@ -469,27 +469,27 @@ exports.getMovieShowtimes = async (req, res) => {
 
     const showtimes = await Showtime.findAll({
       where: {
-        movieId: movieId,
-        isActive: true
+        movie_id: movieId,
+        is_active: true
       },
       include: [
         {
           model: Movie,
           as: 'movie',
-          attributes: ['id', 'title', 'duration', 'certification', 'genre']
+          attributes: ['id', 'title', 'duration', 'age_rating', 'genre']
         },
         {
           model: Hall,
           as: 'hall',
-          attributes: ['id', 'name', 'formatType', 'totalSeats'],
+          attributes: ['id', 'name', 'screen_type', 'total_seats'],
           include: [{
             model: Theater,
             as: 'theater',
-            attributes: ['id', 'name', 'address', 'cityId']
+            attributes: ['id', 'name', 'address', 'city_id']
           }]
         }
       ],
-      order: [['showDate', 'ASC'], ['showTime', 'ASC']]
+      order: [['show_date', 'ASC'], ['show_time', 'ASC']]
     });
 
     res.status(200).json({
@@ -511,18 +511,18 @@ exports.getAllShowtimes = async (req, res) => {
     const { date, movieId, hallId, theaterId } = req.query;
 
     //customhere clause for selecting only active showtimes
-    const whereClause = { isActive: true };
+    const whereClause = { is_active: true };
 
     if (date) {
-      whereClause.showDate = date;
+      whereClause.show_date = date;
     }
 
     if (movieId) {
-      whereClause.movieId = movieId;
+      whereClause.movie_id = movieId;
     }
 
     if (hallId) {
-      whereClause.hallId = hallId;
+      whereClause.hall_id = hallId;
     }
 
     //  include clause for theater filtering
@@ -542,7 +542,7 @@ exports.getAllShowtimes = async (req, res) => {
     const showtimes = await Showtime.findAll({
       where: whereClause,
       include: includeClause,
-      order: [['showDate', 'ASC'], ['showTime', 'ASC']]
+      order: [['show_date', 'ASC'], ['show_time', 'ASC']]
     });
 
     res.status(200).json({
@@ -633,12 +633,12 @@ exports.updateShowtime = async (req, res) => {
     // ✅ Build update object with only provided fields
     const updateFields = {};
 
-    if (showDate !== undefined) updateFields.showDate = showDate;
-    if (showTime !== undefined) updateFields.showTime = showTime;
-    if (basePrice !== undefined) updateFields.basePrice = parseFloat(basePrice);
-    if (availableSeats !== undefined) updateFields.availableSeats = parseInt(availableSeats);
-    if (hallId !== undefined) updateFields.hallId = parseInt(hallId);
-    if (isActive !== undefined) updateFields.isActive = isActive;
+    if (showDate !== undefined) updateFields.show_date = showDate;
+    if (showTime !== undefined) updateFields.show_time = showTime;
+    if (basePrice !== undefined) updateFields.price = parseFloat(basePrice);
+    if (availableSeats !== undefined) updateFields.available_seats = parseInt(availableSeats);
+    if (hallId !== undefined) updateFields.hall_id = parseInt(hallId);
+    if (isActive !== undefined) updateFields.is_active = isActive;
 
     await showtime.update(updateFields);
 
@@ -706,7 +706,7 @@ exports.deleteShowtime = async (req, res) => {
     }
 
     // Soft delete - mark as inactive
-    await showtime.update({ isActive: false });
+    await showtime.update({ is_active: false });
 
     res.status(200).json({
       message: 'Showtime deleted successfully',
@@ -774,14 +774,14 @@ exports.getShowtimesByDateRange = async (req, res) => {
 
 
     const whereClause = {
-      isActive: true,
-      showDate: {
+      is_active: true,
+      show_date: {
         [require('sequelize').Op.between]: [startDate, endDate]
       }
     };
 
     if (movieId) {
-      whereClause.movieId = movieId;
+      whereClause.movie_id = movieId;
     }
 
     const showtimes = await Showtime.findAll({
@@ -794,7 +794,7 @@ exports.getShowtimesByDateRange = async (req, res) => {
           include: [{ model: Theater, as: 'theater' }]
         }
       ],
-      order: [['showDate', 'ASC'], ['showTime', 'ASC']]
+      order: [['show_date', 'ASC'], ['show_time', 'ASC']]
     });
 
     res.status(200).json({

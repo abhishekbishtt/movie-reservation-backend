@@ -221,6 +221,20 @@ exports.confirmPayment = async (req, res) => {
             });
         }
 
+        // Idempotency check: If payment is already completed, return success immediately
+        if (payment.status === 'completed') {
+            return res.status(200).json({
+                success: true,
+                message: 'Payment already confirmed',
+                payment: {
+                    id: payment.id,
+                    status: 'completed',
+                    amount: payment.amount,
+                    paidAt: payment.paid_at
+                }
+            });
+        }
+
 
         const verificationResult = await PaymentService.verifyPayment(
             razorpay_order_id,

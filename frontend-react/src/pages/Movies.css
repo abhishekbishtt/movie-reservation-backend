@@ -1,0 +1,87 @@
+.movies-page {
+    padding: var(--space-2xl) 0;
+    min-height: calc(100vh - 73px);
+}
+
+.movies-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--space-xl);
+}
+
+.movies-header h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-xs);
+}
+
+.movies-header p {
+    color: var(--text-muted);
+}
+
+.filter-badge {
+    width: 8px;
+    height: 8px;
+    background: var(--primary-500);
+    border-radius: var(--radius-full);
+    margin-left: var(--space-xs);
+}
+
+.movies-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--space-xl);
+    align-items: flex-end;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+    min-width: 150px;
+}
+
+.filter-group label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.filter-group select {
+    padding: 0.625rem 2rem 0.625rem 0.75rem;
+    background: var(--bg-tertiary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    font-size: 0.875rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%2371717a' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.5rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+
+.filter-group select:focus {
+    outline: none;
+    border-color: var(--primary-500);
+}
+
+@media (max-width: 768px) {
+    .movies-header {
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .movies-filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+}
